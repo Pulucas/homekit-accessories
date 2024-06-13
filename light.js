@@ -4,8 +4,8 @@ const Characteristic = hap.Characteristic;
 const CharacteristicEventTypes = hap.CharacteristicEventTypes;
 const Service = hap.Service;
 
-const accessoryUuid = hap.uuid.generate('art.lucash.myLight');
-const myLight = new Accessory('My Light', accessoryUuid);
+const accessoryUuid = hap.uuid.generate("art.lucash.myLight");
+const myLight = new Accessory("My Light", accessoryUuid);
 const myLightService = new Service.Lightbulb("My Light");
 
 let currentLightState = false;
@@ -38,20 +38,23 @@ brightnessCharacteristic.on(CharacteristicEventTypes.SET, (value, callback) => {
 
 myLight.addService(myLightService);
 
-// Generates a random pincode on startup
-const randomCode = parseInt(Math.random() * 100000000);
-const pincode = randomCode.toString().split("");
-pincode.splice(3, 0, "-");
-pincode.splice(6, 0, "-");
-console.log("pinode is " + pincode.join(""));
-
 myLight.publish({
   username: '17:51:07:F4:BC:8A',
-  pincode: pincode.join(""),
+  pincode: genPincode(),
   category: Accessory.Categories.LIGHTBULB
 });
 
 console.log("Accessory setup finished");
+
+function genPincode() {
+  // Generates a random pincode on startup
+  const randomCode = parseInt(Math.random() * 100000000);
+  const pincode = randomCode.toString().split("");
+  pincode.splice(3, 0, "-");
+  pincode.splice(6, 0, "-");
+  console.log("pinode is " + pincode.join(""));
+  return pincode.join("");
+}
 
 // function doSomething(state) {
 //   if (state) console.log("Light is on");
