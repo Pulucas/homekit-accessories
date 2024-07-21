@@ -38,8 +38,9 @@ brightnessCharacteristic.on(CharacteristicEventTypes.SET, (value, callback) => {
 
 myLight.addService(myLightService);
 
+// set your own username (mac-address)
 myLight.publish({
-  username: '17:51:07:F4:BC:8A',
+  username: 'AA:BB:CC:12:34:56',
   pincode: genPincode(),
   category: Accessory.Categories.LIGHTBULB
 });
