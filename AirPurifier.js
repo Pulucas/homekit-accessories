@@ -38,7 +38,7 @@ fanSpeed.on(CharacteristicEventTypes.SET, (value, callback) => {
 myAirPurifier.addService(myAirPurifierService);
 
 myAirPurifier.publish({
-  username: '17:51:07:F4:BC:8B',
+  username: 'AA:BB:CC:12:34:56',
   pincode: genPincode(),
   category: Accessory.Categories.AIR_PURIFIER
 });
